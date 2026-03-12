@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const btnProcesar = document.getElementById("btnProcesar");
   const resultadoTexto = document.getElementById("resultadoTexto");
+  const btnDescargar = document.getElementById("btnDescargar");
 
   if (!btnProcesar || !resultadoTexto) return;
 
@@ -27,12 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
     formData.append("salida", salida ? salida.value : "");
     formData.append("instrucciones", instrucciones ? instrucciones.value : "");
 
-    console.log("Enviando datos...");
-    for (const pair of formData.entries()) {
-      console.log(pair[0], pair[1]);
-    }
-
     resultadoTexto.textContent = "Procesando documento...";
+    if (btnDescargar) {
+      btnDescargar.style.display = "none";
+      btnDescargar.removeAttribute("href");
+    }
 
     try {
       const response = await fetch("http://127.0.0.1:8000/procesar", {
@@ -41,14 +41,18 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       const data = await response.json();
-      console.log("Respuesta backend:", data);
 
       if (!response.ok) {
         resultadoTexto.textContent = "Error del backend: " + JSON.stringify(data);
         return;
       }
 
-      resultadoTexto.textContent = data.resultado;
+      resultadoTexto.textContent = data.resultado || "Proceso completado.";
+
+      if (btnDescargar && data.descarga_url) {
+        btnDescargar.href = data.descarga_url;
+        btnDescargar.style.display = "inline-flex";
+      }
     } catch (error) {
       console.error("Error:", error);
       resultadoTexto.textContent = "Error de conexión con el backend.";
