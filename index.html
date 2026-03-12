@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proyecto Henosis</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">H</div>
+        <div>
+          <h1>Henosis</h1>
+          <p>Proyecto documental</p>
+        </div>
+      </div>
+
+      <nav class="menu">
+        <a href="#" class="menu-item active">Panel principal</a>
+        <a href="#" class="menu-item">Nuevo proceso</a>
+        <a href="#" class="menu-item">Historial</a>
+        <a href="#" class="menu-item">Plantillas</a>
+        <a href="#" class="menu-item">Configuración</a>
+      </nav>
+
+      <div class="sidebar-box">
+        <p class="sidebar-label">Estado del entorno</p>
+        <div class="status-item">
+          <span>Interfaz</span>
+          <strong>Activa</strong>
+        </div>
+        <div class="status-item">
+          <span>Backend</span>
+          <strong>Pendiente</strong>
+        </div>
+        <div class="status-item">
+          <span>Exportación</span>
+          <strong>En diseño</strong>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">PROYECTO HENOSIS</p>
+          <h2>Panel operativo documental</h2>
+        </div>
+        <button class="primary-btn">Guardar configuración</button>
+      </header>
+
+      <section class="hero-panel">
+        <div class="hero-copy">
+          <h3>Generación y adaptación de documentos</h3>
+          <p>
+            Esta interfaz está pensada para cargar insumos, definir instrucciones
+            y visualizar una salida documental estructurada antes de integrarla
+            con backend o exportación final.
+          </p>
+
+          <div class="hero-highlights">
+            <div class="hero-highlight">
+              <span>Formatos</span>
+              <strong>DOCX · PDF · TXT</strong>
+            </div>
+            <div class="hero-highlight">
+              <span>Funciones</span>
+              <strong>Adaptar · Resumir · Reestructurar</strong>
+            </div>
+            <div class="hero-highlight">
+              <span>Salida</span>
+              <strong>Vista previa comparativa</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-image">
+          <img src="interfaz.png" alt="Vista del sistema Proyecto Henosis" />
+        </div>
+      </section>
+
+      <section class="workspace">
+        <div class="panel panel-form">
+          <div class="panel-header">
+            <h3>Configuración del proceso</h3>
+            <p>Define el insumo y el tipo de transformación documental.</p>
+          </div>
+
+          <form>
+            <div class="form-group">
+              <label for="archivo">Subir archivo</label>
+              <input type="file" id="archivo" />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="tipoDocumento">Tipo de documento</label>
+                <select id="tipoDocumento">
+                  <option>Contrato</option>
+                  <option>Propuesta comercial</option>
+                  <option>Informe</option>
+                  <option>Análisis técnico</option>
+                  <option>Manual</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="accion">Acción</label>
+                <select id="accion">
+                  <option>Mejorar redacción</option>
+                  <option>Adaptar formato legal</option>
+                  <option>Convertir a propuesta ejecutiva</option>
+                  <option>Resumir contenido</option>
+                  <option>Reestructurar documento</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="tono">Estilo de redacción</label>
+                <select id="tono">
+                  <option>Corporativo formal</option>
+                  <option>Jurídico</option>
+                  <option>Técnico</option>
+                  <option>Ejecutivo</option>
+                  <option>Comercial consultivo</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="salida">Tipo de salida</label>
+                <select id="salida">
+                  <option>Vista previa</option>
+                  <option>Texto final</option>
+                  <option>Comparativo</option>
+                  <option>Estructura sugerida</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="instrucciones">Instrucciones específicas</label>
+              <textarea id="instrucciones" rows="6" placeholder="Ejemplo: Mantener el sentido legal, no alterar cifras, usar un estilo ejecutivo, conservar nombres propios y mejorar claridad."></textarea>
+            </div>
+
+            <div class="checkbox-row">
+              <label><input type="checkbox" checked /> Conservar nombres y razones sociales</label>
+              <label><input type="checkbox" checked /> No alterar montos o cifras</label>
+              <label><input type="checkbox" /> Resaltar cambios clave</label>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="primary-btn">Procesar documento</button>
+              <button type="reset" class="secondary-btn">Limpiar campos</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="panel panel-status">
+          <div class="panel-header">
+            <h3>Estado del procesamiento</h3>
+            <p>Indicadores de flujo y validación de salida.</p>
+          </div>
+
+          <div class="progress-card">
+            <div class="progress-header">
+              <span>Progreso general</span>
+              <strong>35%</strong>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+            </div>
+          </div>
+
+          <div class="step-list">
+            <div class="step completed">
+              <span class="step-dot"></span>
+              <div>
+                <strong>Archivo cargado</strong>
+                <p>El sistema reconoce el insumo base.</p>
+              </div>
+            </div>
+
+            <div class="step active">
+              <span class="step-dot"></span>
+              <div>
+                <strong>Instrucciones definidas</strong>
+                <p>Parámetros de salida establecidos.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <span class="step-dot"></span>
+              <div>
+                <strong>Procesamiento documental</strong>
+                <p>Pendiente de conexión con backend.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <span class="step-dot"></span>
+              <div>
+                <strong>Generación de resultado</strong>
+                <p>Vista final y exportación futura.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="note-box">
+            <h4>Nota de diseño</h4>
+            <p>
+              Este panel ya está listo para conectarse a una API en Python,
+              mostrar resultados dinámicos y habilitar descarga en formato Word o PDF.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="results-section">
+        <div class="panel result-panel">
+          <div class="panel-header">
+            <h3>Vista comparativa</h3>
+            <p>Comparación entre documento base y versión adaptada.</p>
+          </div>
+
+          <div class="compare-grid">
+            <div class="compare-box">
+              <div class="compare-title">Texto original</div>
+              <div class="compare-content">
+                PRIMERA. OBJETO. En virtud del presente contrato, EL PRESTADOR se obliga
+                para con EL CLIENTE a brindarle los siguientes tipos de servicios...
+              </div>
+            </div>
+
+            <div class="compare-box">
+              <div class="compare-title">Texto adaptado</div>
+              <div class="compare-content">
+                PRIMERA. OBJETO. Por medio del presente instrumento, EL PRESTADOR se obliga
+                frente a EL CLIENTE a proporcionar los servicios relacionados con el proyecto
+                correspondiente, en los términos y condiciones establecidos...
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel output-panel">
+          <div class="panel-header">
+            <h3>Salida estructurada</h3>
+            <p>Espacio para observaciones, resumen o versión final.</p>
+          </div>
+
+          <div class="output-box">
+            <h4>Resultado preliminar</h4>
+            <p>
+              Aquí se mostrará la salida generada una vez conectada la lógica del sistema.
+              Este bloque puede utilizarse para presentar un resumen, una redacción final,
+              una tabla de cambios o una propuesta de estructura documental.
+            </p>
+          </div>
+
+          <div class="output-actions">
+            <button class="primary-btn">Exportar resultado</button>
+            <button class="secondary-btn">Copiar texto</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
