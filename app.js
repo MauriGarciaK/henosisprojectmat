@@ -6,11 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   btnProcesar.addEventListener("click", async () => {
     const archivoInput = document.getElementById("archivo");
-    const tipoDocumento = document.getElementById("tipoDocumento")?.value || "";
-    const accion = document.getElementById("accion")?.value || "";
-    const tono = document.getElementById("tono")?.value || "";
-    const salida = document.getElementById("salida")?.value || "";
-    const instrucciones = document.getElementById("instrucciones")?.value || "";
+    const tipoDocumento = document.getElementById("tipoDocumento");
+    const accion = document.getElementById("accion");
+    const tono = document.getElementById("tono");
+    const salida = document.getElementById("salida");
+    const instrucciones = document.getElementById("instrucciones");
 
     const archivo = archivoInput?.files?.[0];
 
@@ -21,11 +21,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const formData = new FormData();
     formData.append("archivo", archivo);
-    formData.append("tipo_documento", tipoDocumento);
-    formData.append("accion", accion);
-    formData.append("tono", tono);
-    formData.append("salida", salida);
-    formData.append("instrucciones", instrucciones);
+    formData.append("tipo_documento", tipoDocumento ? tipoDocumento.value : "");
+    formData.append("accion", accion ? accion.value : "");
+    formData.append("tono", tono ? tono.value : "");
+    formData.append("salida", salida ? salida.value : "");
+    formData.append("instrucciones", instrucciones ? instrucciones.value : "");
+
+    console.log("Enviando datos...");
+    for (const pair of formData.entries()) {
+      console.log(pair[0], pair[1]);
+    }
 
     resultadoTexto.textContent = "Procesando documento...";
 
@@ -35,14 +40,17 @@ document.addEventListener("DOMContentLoaded", () => {
         body: formData
       });
 
+      const data = await response.json();
+      console.log("Respuesta backend:", data);
+
       if (!response.ok) {
-        throw new Error("No se pudo procesar el documento");
+        resultadoTexto.textContent = "Error del backend: " + JSON.stringify(data);
+        return;
       }
 
-      const data = await response.json();
       resultadoTexto.textContent = data.resultado;
     } catch (error) {
-      console.error(error);
+      console.error("Error:", error);
       resultadoTexto.textContent = "Error de conexión con el backend.";
     }
   });
